@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejoins le canal Telegram</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" type="image/svg+xml">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+        :root {
+            --telegram-blue: #0088cc;
+            --dark-blue: #00568c;
+            --flash-color: rgba(255, 255, 255, 0.8);
+            --bg-color-start: #1a1a2e;
+            --bg-color-end: #16213e;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; 
+            background: linear-gradient(45deg, var(--bg-color-start), var(--bg-color-end));
+            color: var(--text-color);
+            position: relative; 
+        }
+
+        /* --- Animations de fond de tempête --- */
+        .storm-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAADCAYAAADg3YAHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAsTAAALEsOdm2aWQAAABVJREFUGFtjYGBgYGBkYGDg/+gPMAACJAkG52oEbwAAAABJRU5ErkJggg==') repeat;
+            animation: rainFall 0.8s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes rainFall {
+            from {
+                background-position: 0% 0%;
+            }
+            to {
+                background-position: 100% 100%;
+            }
+        }
+
+        .lightning {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--flash-color);
+            opacity: 0;
+            animation: lightningFlash 5s infinite;
+        }
+
+        @keyframes lightningFlash {
+            0%, 100% { opacity: 0; }
+            5% { opacity: 0.8; }
+            5.1% { opacity: 0; }
+            10% { opacity: 0.6; }
+            10.1% { opacity: 0; }
+            20% { opacity: 0; } 
+        }
+
+        /* --- Conteneur principal --- */
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 50px 60px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--telegram-blue);
+            animation: fadeInScale 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: var(--telegram-blue);
+            margin-bottom: 25px;
+            font-size: 2.8em;
+            text-shadow: 0 0 15px var(--telegram-blue), 0 0 5px var(--telegram-blue);
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px var(--telegram-blue), 0 0 3px var(--telegram-blue);
+            }
+            to {
+                text-shadow: 0 0 20px var(--telegram-blue), 0 0 7px var(--telegram-blue);
+            }
+        }
+
+        p {
+            font-size: 1.3em;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        /* --- Bouton Telegram --- */
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(45deg, var(--telegram-blue), var(--dark-blue));
+            color: #fff;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0, 136, 204, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .telegram-link:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.6);
+            background: linear-gradient(45deg, var(--dark-blue), var(--telegram-blue));
+        }
+
+        .telegram-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-30deg);
+            transition: left 0.6s ease;
+        }
+
+        .telegram-link:hover::before {
+            left: 100%;
+        }
+
+        .telegram-logo {
+            width: 45px;
+            height: 45px;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="storm-bg">
+        <div class="rain"></div>
+        <div class="lightning"></div>
+    </div>
+
+    <div class="container">
+        <h1>Rejoins le canal Telegram</h1>
+        <p>Clique sur le bouton ci-dessous pour ne rien manquer des dernières infos !</p>
+        <a href="https://t.me/+lXzUb9XdpMpkYjM0" class="telegram-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Logo Telegram" class="telegram-logo">
+            Rejoindre la Tempête
+        </a>
+    </div>
+</body>
+</html>
